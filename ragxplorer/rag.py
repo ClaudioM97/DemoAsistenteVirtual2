@@ -166,7 +166,7 @@ def load_txt_clean():
     return contenidos_archivos
  
 def get_collection():
-    chroma_client = chromadb.PersistentClient(path="../chroma_final")
+    chroma_client = chromadb.PersistentClient(path="chroma_final")
     collection = chroma_client.get_or_create_collection('docs_publicos')
     return collection
 
