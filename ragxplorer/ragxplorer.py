@@ -29,7 +29,9 @@ from .rag import (
     get_collection,
     get_chunks_relevants,
     get_docs_2,
-    coleccion
+    coleccion,
+    get_chunks,
+    get_ids
     )
 
 from .projections import (
@@ -114,7 +116,9 @@ class RAGxplorer(BaseModel):
             print(" ~ Building the vector database...")
         #self._vectordb = build_vector_database(chunk_size, chunk_overlap, self._chosen_embedding_model)
         pre = get_collection()
-        self._vectordb = get_chunks_relevants(query,50,pre)
+        documentos_recuperados = get_chunks(query,pre)
+        documentos_recuperados_ids = get_ids(query,pre)
+        self._vectordb = get_chunks_relevants(query,50,documentos_recuperados,documentos_recuperados_ids)
         self._vectordb_reduced = coleccion(self._vectordb)
         
         if verbose:
