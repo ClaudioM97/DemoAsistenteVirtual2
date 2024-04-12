@@ -29,9 +29,7 @@ from .rag import (
     get_collection,
     get_chunks_relevants,
     get_docs_2,
-    coleccion,
-    get_chunks,
-    get_ids
+    coleccion
     )
 
 from .projections import (

@@ -170,20 +170,13 @@ def get_collection():
     collection = chroma_client.get_or_create_collection('docs_publicos')
     return collection
 
-def get_chunks(query,coleccion):
+     
+def get_chunks_relevants(query,top_docs,collection):
+    coleccion = collection
     results = coleccion.query(query_texts=query, n_results=100, include=['documents', 'embeddings'])
     retrieved_documents = results['documents'][0]
-    return retrieved_documents
-
-def get_ids(query,coleccion):
-    results = coleccion.query(query_texts=query, n_results=100, include=['documents', 'embeddings'])
     retrieved_documents_ids = results['ids'][0]
-    return retrieved_documents_ids
 
-     
-def get_chunks_relevants(query,top_docs,rd,rdi):
-    retrieved_documents = rd
-    retrieved_documents_ids = rdi
     cross_encoder = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
     pairs = [[query, doc] for doc in retrieved_documents]
     scores = cross_encoder.predict(pairs)
