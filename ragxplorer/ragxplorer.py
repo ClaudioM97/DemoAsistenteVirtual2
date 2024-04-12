@@ -121,7 +121,8 @@ class RAGxplorer(BaseModel):
             print("Completed Building Vector Database ✓")
         
         self._documents.embeddings = self._vectordb_reduced.get(include=["embeddings"])["embeddings"]
-        self._documents.text = get_docs_2(self._vectordb_reduced)
+        self._documents.text = self._vectordb_reduced.get(include=['documents'])['documents']
+        #self._documents.text = get_docs_2(self._vectordb_reduced)
         self._documents.ids = self._vectordb_reduced.get()['ids']
         #self._documents.metadata = self._vectordb.get()['metadatas']
         if verbose:
