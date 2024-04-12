@@ -176,7 +176,7 @@ def get_chunks_relevants(query,top_docs,collection):
     retrieved_documents = results['documents'][0]
     retrieved_documents_ids = results['ids'][0]
 
-     if not retrieved_documents:
+    if not retrieved_documents:
         print("No documents retrieved.")
         return []
     
