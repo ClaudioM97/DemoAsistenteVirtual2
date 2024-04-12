@@ -175,6 +175,10 @@ def get_chunks_relevants(query,top_docs,collection):
     results = coleccion.query(query_texts=query, n_results=100, include=['documents', 'embeddings'])
     retrieved_documents = results['documents'][0]
     retrieved_documents_ids = results['ids'][0]
+
+     if not retrieved_documents:
+        print("No documents retrieved.")
+        return []
     
     cross_encoder = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
     pairs = [[query, doc] for doc in retrieved_documents]
