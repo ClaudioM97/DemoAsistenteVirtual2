@@ -196,7 +196,7 @@ def coleccion(dict):
                    ids=dict['ids'])
     return collection
 
-def get_docs_2(dict) -> List[str]:
+def get_docs_2(coleccion) -> List[str]:
     """
     Retrieves the documents from the Chroma collection.
     
@@ -206,8 +206,8 @@ def get_docs_2(dict) -> List[str]:
     Returns:
         A list of documents.
     """
-    documents = dict['documents']
-    metadata = dict['metadatas']
+    documents = coleccion.get(include=['documents'])['documents']
+    metadata = coleccion.get(include=['metadatas'])['metadatas']
     documentos_modificados = []
     
     for document, metadata in zip(documents, metadata):
