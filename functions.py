@@ -173,7 +173,7 @@ def get_vdb():
     
 
 @st.cache_resource
-def qa_chain(vectordb,k):
+def qa_chain(vectordbx,k):
     template = """
     Dado un historial de conversacion, reformula la pregunta para hacerla mas facil de buscar en una base de datos.
     Por ejemplo, si la IA dice "¿Quieres saber el clima actual en Estambul?", y el usuario responde "si", entonces la IA deberia reformular la pregunta como "¿Cual es el clima actual en Estambul?".
@@ -188,7 +188,7 @@ def qa_chain(vectordb,k):
         
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=ChatOpenAI(model_name='gpt-3.5-turbo-0125', temperature=0),
-        retriever=vectordb.as_retriever(search_kwargs={'fetch_k': 10, 'k': k}, search_type='mmr'),
+        retriever=vectordbx.as_retriever(search_kwargs={'fetch_k': 10, 'k': k}, search_type='mmr'),
         #chain_type="refine",
         condense_question_prompt=QA_CHAIN_PROMPT,
         combine_docs_chain_kwargs={'prompt': qa_prompt}
