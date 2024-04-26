@@ -172,7 +172,7 @@ def get_vdb():
     return vectordb
     
 
-@st.cache_resource
+#@st.cache_resource
 def qa_chain(vectordbx,k):
     template = """
     Dado un historial de conversacion, reformula la pregunta para hacerla mas facil de buscar en una base de datos.
