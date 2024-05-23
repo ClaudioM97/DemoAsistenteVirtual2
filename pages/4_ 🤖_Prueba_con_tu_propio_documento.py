@@ -61,8 +61,10 @@ st.markdown('''En este apartado podrás cargar tu propio documento en formato PD
 
 uploaded_file = st.file_uploader("Carga tu archivo PDF", type="pdf")
 
-if uploaded_file is None:
-    st.write('Lo lamento, tienes que cargar un documento PDF primero ☹️')
+
+if question := st.chat_input("Escribe tu pregunta aquí") and uploaded_file is None:
+    st.write('Lo lamento, tienes que cargar un PDF primero ☹️')
+
 
 if uploaded_file is not None:
      with st.spinner("Procesando..."):
