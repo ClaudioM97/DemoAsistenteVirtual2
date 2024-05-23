@@ -74,8 +74,8 @@ k_value = st.sidebar.select_slider('Segmentos de texto a recuperar', options=[1,
 
 if k_value:
     question = st.chat_input("Escribe tu pregunta aquí")
-    vector_db = get_vdb()
-    conversation_chain = qa_chain(vector_db,k_value)
+    #vector_db = get_vdb()
+    conversation_chain = qa_chain(k_value)
     memory = load_memory(st)
     
     if question:

@@ -180,7 +180,7 @@ def display_in_pairs(data):
                 for key, value in data[-1].items():
                     st.write(f"{key}: {value}")
                     
-@st.cache_resource
+
 def get_vdb():
     #persist_directory = '/Users/claudiomontiel/Desktop/Proyectos VS/PruebaStreamlit/chroma_st'
     embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
@@ -189,8 +189,11 @@ def get_vdb():
     return vectordb
     
 
-@st.cache_data
-def qa_chain(vectordb,k):
+@st.cache_resource
+def qa_chain(k):
+    embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
+    vectordb = Chroma(persist_directory="chroma_discursos",
+                      embedding_function=embeddings)
     template = """
     Dado un historial de conversacion, reformula la pregunta para hacerla mas facil de buscar en una base de datos.
     Por ejemplo, si la IA dice "¿Quieres saber el clima actual en Estambul?", y el usuario responde "si", entonces la IA deberia reformular la pregunta como "¿Cual es el clima actual en Estambul?".
