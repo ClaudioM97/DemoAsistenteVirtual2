@@ -20,6 +20,8 @@ from io import BytesIO
 import os
 import streamlit as st
 from langchain_openai import ChatOpenAI
+from langchain.retrievers import EnsembleRetriever
+from langchain_community.retrievers import BM25Retriever
 
 general_system_template = f'''
 Eres un asistente virtual de un director empresarial, es decir, miembro del directorio de varias empresas. Debes responder de manera concisa y precisa, las preguntas que tenga sobre distintos tipos de documentos tales como:
@@ -190,10 +192,12 @@ def get_vdb():
     
 
 @st.cache_resource
-def qa_chain(k):
+def qa_chain(k=4):
     embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
     vectordb = Chroma(persist_directory="chroma_discursos",
                       embedding_function=embeddings)
+    retriever_bm25 = BM25Retriever.from_texts(vectordb.get()['documents'])
+    retriever_mmr = vectordb.as_retriever(search_type = 'mmr',search_kwargs={'fetch_k': 8, 'k': k})
     template = """
     Dado un historial de conversacion, reformula la pregunta para hacerla mas facil de buscar en una base de datos.
     Por ejemplo, si la IA dice "¿Quieres saber el clima actual en Estambul?", y el usuario responde "si", entonces la IA deberia reformular la pregunta como "¿Cual es el clima actual en Estambul?".
@@ -208,8 +212,7 @@ def qa_chain(k):
         
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=ChatOpenAI(model_name='gpt-3.5-turbo-0125', temperature=0),
-        retriever=vectordb.as_retriever(search_type = 'mmr',search_kwargs={'fetch_k': 8, 'k': k}),
-        #condense_question_llm=ChatOpenAI(model_name="gpt-3.5-turbo-0125"),
+        retriever=EnsembleRetriever(retrievers=[retriever_bm25, retriever_mmr],weights=[0.4, 0.6]),
         condense_question_prompt=QA_CHAIN_PROMPT,
         combine_docs_chain_kwargs={'prompt': qa_prompt}
     )
