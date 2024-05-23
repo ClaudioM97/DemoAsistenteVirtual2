@@ -61,7 +61,7 @@ def extract_text(uploaded_pdf):
     text = ""
 
     for page in pages:
-        text += page_content
+        text += page.page_content
     
     text = text.replace('\t', ' ')
 
