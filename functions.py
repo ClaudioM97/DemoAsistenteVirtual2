@@ -192,16 +192,16 @@ def get_vdb():
     
 
 @st.cache_resource
-def qa_chain(k=4):
+def qa_chain(k=3):
     embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
     vectordb = Chroma(persist_directory="chroma_discursos",
                       embedding_function=embeddings)
     retriever_bm25 = BM25Retriever.from_texts(vectordb.get()['documents'])
-    retriever_mmr = vectordb.as_retriever(search_type = 'mmr',search_kwargs={'fetch_k': 8, 'k': k})
+    retriever_mmr = vectordb.as_retriever(search_kwargs={'k': k})
     template = """
     Dado un historial de conversacion, reformula la pregunta para hacerla mas facil de buscar en una base de datos.
     Por ejemplo, si la IA dice "¿Quieres saber el clima actual en Estambul?", y el usuario responde "si", entonces la IA deberia reformular la pregunta como "¿Cual es el clima actual en Estambul?".
-    No debes cambiar el idioma de la pregunta, solo reformularla. Si no es necesario reformular la pregunta o si no es una pregunta, simplemente muestra el mismo texto
+    No debes cambiar el idioma de la pregunta, solo reformularla.
 
     ### Historial de conversación ###
     {chat_history}
