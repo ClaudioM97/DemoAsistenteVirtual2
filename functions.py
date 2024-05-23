@@ -7,16 +7,39 @@ from langchain_openai import OpenAIEmbeddings
 from langchain.chains import RetrievalQA, ConversationalRetrievalChain
 from langchain_community.document_loaders import TextLoader
 from langchain.prompts import PromptTemplate
+from langchain.prompts import SystemMessagePromptTemplate, HumanMessagePromptTemplate, ChatPromptTemplate
 from langchain.memory import ConversationSummaryMemory
 from langchain.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferWindowMemory
 from unstructured.cleaners.core import clean
+from langchain.document_loaders import PyPDFLoader
 import pytesseract 
 from unidecode import unidecode
 from pdf2image import convert_from_bytes
 import os
 import streamlit as st
 from langchain_openai import ChatOpenAI
+
+general_system_template = f'''
+Eres un asistente virtual de un director empresarial, es decir, miembro del directorio de varias empresas. Debes responder de manera concisa y precisa, las preguntas que tenga sobre distintos tipos de documentos tales como:
+informes financieros, reportes empresariales, memorias anuales, articulos, y cualquier otro que sea relevante para un director empresarial en su gestion.
+
+Responde la pregunta del final, utilizando solo el siguiente contexto (delimitado por <context></context>).
+Si no sabes la respuesta, menciona explicitamente que no la sabes de manera educada y cordial.
+<context>
+{{chat_history}}
+
+{{context}} 
+</context>
+'''
+
+general_user_template = "Question:```{question}```"
+messages = [
+            SystemMessagePromptTemplate.from_template(general_system_template),
+            HumanMessagePromptTemplate.from_template(general_user_template)
+]
+qa_prompt = ChatPromptTemplate.from_messages(messages)
+
 
 @st.cache_data
 def extract_text_from_pdf(uploaded_pdf):
@@ -28,6 +51,20 @@ def extract_text_from_pdf(uploaded_pdf):
         ocr_text_list.append(page_content)
     ocr_text = ' '.join(ocr_text_list)
     return ocr_text
+
+
+@st.cache_data
+def extract_text(uploaded_pdf):
+    loader = PyPDFLoader(uploaded_pdf)
+    pages = loader.load()
+    text = ""
+
+    for page in pages:
+        text += page_content
+    
+    text = text.replace('\t', ' ')
+
+    return text
 
 @st.cache_data
 def extract_text_from_pdf_2(uploaded_pdf):
@@ -97,9 +134,10 @@ def get_conversation_chain(text_chunks):
         
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=ChatOpenAI(model_name='gpt-3.5-turbo-0125', temperature=0),
-        retriever=vectorstore.as_retriever(search_type = 'mmr'),
+        retriever=vectorstore.as_retriever(search_type = 'mmr',search_kwargs={'fetch_k': 10, 'k': 4}),
         condense_question_llm=ChatOpenAI(model_name="gpt-3.5-turbo-0125"),
-        condense_question_prompt=QA_CHAIN_PROMPT
+        condense_question_prompt=QA_CHAIN_PROMPT,
+        combine_docs_chain_kwargs={'prompt': qa_prompt}
     )
     return conversation_chain
 

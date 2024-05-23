@@ -66,7 +66,7 @@ if uploaded_file is not None:
         
          st.write("Archivo cargado:", uploaded_file.name)
     
-         text = extract_text_from_pdf(uploaded_file)
+         text = extract_text(uploaded_file)
          text_clean = clean_text(text)
          text_chunks = get_text_chunks(text_clean)
          conversation_chain = get_conversation_chain(text_chunks)
