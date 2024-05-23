@@ -180,7 +180,7 @@ def display_in_pairs(data):
                 for key, value in data[-1].items():
                     st.write(f"{key}: {value}")
                     
-#@st.cache_resource
+@st.cache_data
 def get_vdb():
     #persist_directory = '/Users/claudiomontiel/Desktop/Proyectos VS/PruebaStreamlit/chroma_st'
     embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
@@ -189,7 +189,7 @@ def get_vdb():
     return vectordb
     
 
-
+@st.cache_data
 def qa_chain(vectordb,k):
     template = """
     Dado un historial de conversacion, reformula la pregunta para hacerla mas facil de buscar en una base de datos.
