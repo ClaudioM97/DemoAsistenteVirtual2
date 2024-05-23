@@ -80,7 +80,7 @@ if uploaded_file is not None:
          memory = load_memory(st)
          
          
-if question := st.chat_input("Escribe tu pregunta aquí") and uploaded_file is not None:
+if question := st.chat_input("Escribe tu pregunta aquí"):
         st.session_state.messages.append({"role": "user", "content": question})
         st.chat_message("user").write(question)
         
@@ -94,9 +94,6 @@ if question := st.chat_input("Escribe tu pregunta aquí") and uploaded_file is n
             answer = response["answer"]
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.chat_message("assistant").write(answer)
-
-else:
-    st.write('Lo lamento, tienes que cargar un PDF primero ☹️')
             
 #p.stop()
 
