@@ -16,6 +16,7 @@ from langchain.document_loaders import PyPDFLoader
 import pytesseract 
 from unidecode import unidecode
 from pdf2image import convert_from_bytes
+from io import BytesIO
 import os
 import streamlit as st
 from langchain_openai import ChatOpenAI
@@ -55,7 +56,7 @@ def extract_text_from_pdf(uploaded_pdf):
 
 @st.cache_data
 def extract_text(uploaded_pdf):
-    loader = PyPDFLoader(uploaded_pdf.getvalue())
+    loader = BytesIO(PyPDFLoader(uploaded_pdf.read()))
     pages = loader.load()
     text = ""
 
