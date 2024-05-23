@@ -62,9 +62,6 @@ st.markdown('''En este apartado podrás cargar tu propio documento en formato PD
 uploaded_file = st.file_uploader("Carga tu archivo PDF", type="pdf")
 
 
-if question := st.chat_input("Escribe tu pregunta aquí") and uploaded_file is None:
-    st.write('Lo lamento, tienes que cargar un PDF primero ☹️')
-
 
 if uploaded_file is not None:
      with st.spinner("Procesando..."):
@@ -83,7 +80,7 @@ if uploaded_file is not None:
          memory = load_memory(st)
          
          
-if question := st.chat_input("Escribe tu pregunta aquí"):
+if question := st.chat_input("Escribe tu pregunta aquí") and uploaded_file is not None:
         st.session_state.messages.append({"role": "user", "content": question})
         st.chat_message("user").write(question)
         
@@ -97,6 +94,9 @@ if question := st.chat_input("Escribe tu pregunta aquí"):
             answer = response["answer"]
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.chat_message("assistant").write(answer)
+
+else:
+    st.write('Lo lamento, tienes que cargar un PDF primero ☹️')
             
 #p.stop()
 
