@@ -56,7 +56,7 @@ def extract_text_from_pdf(uploaded_pdf):
 
 @st.cache_data
 def extract_text(uploaded_pdf):
-    loader = BytesIO(PyPDFLoader(uploaded_pdf.read()))
+    loader = PyPDFLoader(uploaded_pdf.name)
     pages = loader.load()
     text = ""
 
