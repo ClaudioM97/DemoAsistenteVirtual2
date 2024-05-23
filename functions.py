@@ -180,7 +180,7 @@ def display_in_pairs(data):
                 for key, value in data[-1].items():
                     st.write(f"{key}: {value}")
                     
-@st.cache_data
+@st.cache_resource
 def get_vdb():
     #persist_directory = '/Users/claudiomontiel/Desktop/Proyectos VS/PruebaStreamlit/chroma_st'
     embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
