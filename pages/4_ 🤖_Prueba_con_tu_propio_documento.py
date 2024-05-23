@@ -65,8 +65,13 @@ if uploaded_file is not None:
      with st.spinner("Procesando..."):
         
          st.write("Archivo cargado:", uploaded_file.name)
+
+         temp_file = "./temp.pdf"
+         with open(temp_file, "wb") as file:
+            file.write(uploaded_file.getvalue())
+            file_name = uploaded_file.name
     
-         text = extract_text(uploaded_file)
+         text = extract_text(temp_file)
          text_clean = clean_text(text)
          text_chunks = get_text_chunks(text_clean)
          conversation_chain = get_conversation_chain(text_chunks)
