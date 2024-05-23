@@ -184,7 +184,7 @@ def display_in_pairs(data):
 def get_vdb():
     #persist_directory = '/Users/claudiomontiel/Desktop/Proyectos VS/PruebaStreamlit/chroma_st'
     embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
-    vectordb = Chroma(persist_directory="chroma_st",
+    vectordb = Chroma(persist_directory="chroma_discursos",
                       embedding_function=embeddings)
     return vectordb
     
@@ -205,9 +205,10 @@ def qa_chain(vectordb,k):
         
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=ChatOpenAI(model_name='gpt-3.5-turbo-0125', temperature=0),
-        retriever=vectordb.as_retriever(search_type = 'mmr',search_kwargs={"k": k}),
+        retriever=vectordb.as_retriever(search_type = 'mmr',search_kwargs={'fetch_k': 8, 'k': k}),
         #condense_question_llm=ChatOpenAI(model_name="gpt-3.5-turbo-0125"),
-        condense_question_prompt=QA_CHAIN_PROMPT
+        condense_question_prompt=QA_CHAIN_PROMPT,
+        combine_docs_chain_kwargs={'prompt': qa_prompt}
     )
     return conversation_chain
     
