@@ -62,11 +62,6 @@ button {
 st.title("🧠 Habla con los documentos precargados")
 
 st.markdown('''
-Explora en detalle los documentos que fueron de tu interés mediante diálogos con nuestro asistente virtual, enfocándote en temas clave y guardando preguntas recurrentes para facilitar la interacción natural y eficiente con tu información crítica. <br><br>
-        Al costado izquierdo, puedes seleccionar el número de segmentos de texto a recuperar.
-        Piensa en los segmentos como pequeñas porciones o trozos de los documentos pre cargados en los que se basa el robot para encontrar y darte las respuestas más precisas. 
-        Al seleccionar el número de estos segmentos, estás personalizando cómo el chatbot busca la información antes de responder a tus preguntas. 
-        Si escoges, por ejemplo, tres segmentos; el chatbot buscará los tres fragmentos de texto que contengan la información que sea más pertinente para responder a tu pregunta.
         ¡Pruébalo tu mismo! 🤝
          ''',unsafe_allow_html=True)
 

@@ -61,31 +61,7 @@ st.sidebar.markdown(
 
 st.title('👋 ¡Bienvenido al Asistente IA de Brain Food!')
 
-st.markdown('''Esta aplicación basada en Inteligencia Artificial Generativa (GenAI) busca apoyar tu trabajo como director de empresa, permitiéndote  explorar tus documentos de forma más efectiva, facilitar tu preparación para reuniones para llegar a los puntos en que aportas más valor, y ayudarte a buscar asociaciones entre documentos para algún informe o charla que tengas que preparar.
-    Todavía en estado de piloto, para probar su efectividad y recibir tu feedback, hemos desarrollado tres funcionalidades basadas en GenAI:
+st.markdown('''Esta aplicación basada en Inteligencia Artificial Generativa (GenAI) consiste en un chatbot en el cual puedes realizarle preguntas sobre cualquier cosa que quieras saber sobre el contenido de los discursos presidenciales de los años 2022 y 2023.
+    Ten presente que es un prototipo y por ende puede que algunas preguntas no las conteste correctamente. ¡Está en mejora continua!
             ''')
 
-with st.container():
-    st.subheader('''1. Fichas documentos precargados
-            ''')
-    st.markdown('''En esta sección se encuentran precargados diferentes documentos públicos pertenecientes a blogs de retail y memorias anuales de Falabella.
-                Sin embargo, en lugar de leer alguno de ellos de forma completa, hemos creado fichas de resumen para estos documentos usando IA.
-                En tales fichas, se resume el documento en los siguientes elementos clave: fecha de creación del documento, fecha de guardado (fecha en la cual se crea la ficha), tipo de documento, título, autor, resumen, ideas principales y finalmente, keywords.
-                El objetivo final es que cada vez que recibas un documento nuevo, puedas guardarlo en una carpeta y la IA genere la ficha de forma automática, para ayudarte a acercarte a los documentos nuevos, y a la vez tener un respaldo amigable del contenido de los antiguos.
-                ''', unsafe_allow_html=True)
-    
-with st.container():
-    st.subheader('2. Habla con los documentos precargados')
-    st.markdown('''Aquí podras profundizar en aquellos documentos precargados que fueron de tu interés en la sección anterior a través de una
-                conversación con nuestro asistente virtual. Puedes hacerle preguntas sobre lo que quieras saber más en detalle de los documentos.
-                El objetivo final es que puedas interactuar de forma natural con tus documentos, que puedas ir directamente a los temas que para ti como director son clave, y que puedas guardar tus “preguntas tipo” mes a mes.
-                ''',unsafe_allow_html=True)
-    
-with st.container():
-    st.subheader('3. Prueba con tu propio documento')
-    st.markdown('''En este apartado podrás cargar tu propio documento en formato PDF para que nuestro asistente virtual responda todas las preguntas que tengas sobre este.
-                Además, puedes solicitarle tareas que vayan mas allá de preguntas sobre determinados tópicos. Por ejemplo, puedes pedir que realice resuménes, extraiga información relevante, analice secciones específicas del documento, entre otras.
-                El objetivo final es que puedas identificar, asociar, e ir a consultar de forma directa los documentos que se parecen más a  tu pregunta o tema de interés. Es importante notar que la IA no responde directamente lo que aparece en estos segmentos, sólo los usa como contexto para darte la respuesta en la función de chatbot.<br><br>
-                Por otro lado, como ésta es una versión piloto, el robot sólo puede interpretar el texto de los archivos, aún no comprende las tablas ni las imágenes.
-                No obstante, es una funcionalidad que está en desarrollo. Te recomendamos probar con distintas maneras de formular tu pregunta – por ejemplo, resume o extrae los puntos más importantes entrega resultados muy distintos. Al ser un piloto, también te recomendamos probar con un documento PDF de texto liviano para que la carga no tome tanto tiempo.
-                ''',unsafe_allow_html=True)

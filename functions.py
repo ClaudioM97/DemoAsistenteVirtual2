@@ -12,6 +12,7 @@ from langchain.memory import ConversationSummaryMemory
 from langchain.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferWindowMemory
 from unstructured.cleaners.core import clean
+from langchain_openai import AzureChatOpenAI
 from langchain.document_loaders import PyPDFLoader
 import pytesseract 
 from unidecode import unidecode
@@ -198,6 +199,11 @@ def qa_chain(k=3):
                       embedding_function=embeddings)
     retriever_bm25 = BM25Retriever.from_texts(vectordb.get()['documents'])
     retriever_mmr = vectordb.as_retriever(search_kwargs={'k': k})
+    modelo = AzureChatOpenAI(api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                        azure_deployment=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"),
+                        api_version="2024-02-15-preview",
+                        temperature=0)
     template = """
     Dado un historial de conversacion, reformula la pregunta para hacerla mas facil de buscar en una base de datos.
     Por ejemplo, si la IA dice "¿Quieres saber el clima actual en Estambul?", y el usuario responde "si", entonces la IA deberia reformular la pregunta como "¿Cual es el clima actual en Estambul?".
@@ -211,7 +217,7 @@ def qa_chain(k=3):
     QA_CHAIN_PROMPT = PromptTemplate.from_template(template)
         
     conversation_chain = ConversationalRetrievalChain.from_llm(
-        llm=ChatOpenAI(model_name='gpt-3.5-turbo-0125', temperature=0),
+        llm=modelo,
         retriever=EnsembleRetriever(retrievers=[retriever_bm25, retriever_mmr],weights=[0.4, 0.6]),
         condense_question_prompt=QA_CHAIN_PROMPT,
         combine_docs_chain_kwargs={'prompt': qa_prompt}
