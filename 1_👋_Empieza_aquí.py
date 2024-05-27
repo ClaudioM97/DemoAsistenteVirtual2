@@ -61,7 +61,7 @@ st.sidebar.markdown(
 
 st.title('👋 ¡Bienvenido al Asistente IA de Brain Food!')
 
-st.markdown('''Esta aplicación basada en Inteligencia Artificial Generativa (GenAI) consiste en un chatbot en el cual puedes realizarle preguntas sobre cualquier cosa que quieras saber sobre el contenido de los discursos presidenciales de los años 2022 y 2023.
+st.markdown('''Esta aplicación basada en Inteligencia Artificial Generativa (GenAI) consiste en un chatbot en el cual puedes realizarle preguntas sobre el contenido de los discursos presidenciales de los años 2022 y 2023.
     Ten presente que es un prototipo y por ende puede que algunas preguntas no las conteste correctamente. ¡Está en mejora continua!
             ''')
 
