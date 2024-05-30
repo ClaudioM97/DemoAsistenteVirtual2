@@ -25,11 +25,14 @@ from langchain.retrievers import EnsembleRetriever
 from langchain_community.retrievers import BM25Retriever
 
 general_system_template = f'''
-Eres un asistente virtual de un director empresarial, es decir, miembro del directorio de varias empresas. Debes responder de manera concisa y precisa, las preguntas que tenga sobre distintos tipos de documentos tales como:
-informes financieros, reportes empresariales, memorias anuales, articulos, y cualquier otro que sea relevante para un director empresarial en su gestion.
+Eres un asistente político que responde consultas sobre los discursos presidenciales de los años 2022 y 2023 en Chile.
+Responde la pregunta del final, utilizando el siguiente contexto (delimitado por <context></context>).
 
-Responde la pregunta del final, utilizando solo el siguiente contexto (delimitado por <context></context>).
-Si no sabes la respuesta, menciona explicitamente que no la sabes de manera educada y cordial.
+En tu respuesta final considera lo siguiente:
+-Si el usuario no especifica el año en su pregunta, responde basandote en el discurso mas reciente, en este caso, el del 2023.
+-Si el contexto que utilizas para responder a la pregunta es acotado, menciona en tu respuesta que hay poca información y que eso fue todo lo que encontraste.
+-Si no encuentras información para responder a la pregunta, no digas "No lo sé" o algo similar, menciona que no existe información en el contexto de los discursos presidenciales.
+-Si no es ninguno de los casos anteriores, elabora tu respuesta de manera que sea detallista y concreta, pero tambien que aporte contexto adicional para que el usuario pueda entender de mejor manera. Que tu respuesta sea mínimo de 5 parrafos.
 <context>
 {{chat_history}}
 
@@ -219,6 +222,7 @@ def qa_chain(k=3):
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=modelo,
         retriever=EnsembleRetriever(retrievers=[retriever_bm25, retriever_mmr],weights=[0.4, 0.6]),
+        condense_question_llm=ChatOpenAI(model_name="gpt-3.5-turbo-0125"),
         condense_question_prompt=QA_CHAIN_PROMPT,
         combine_docs_chain_kwargs={'prompt': qa_prompt}
     )
