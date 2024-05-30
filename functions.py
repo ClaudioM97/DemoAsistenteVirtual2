@@ -208,10 +208,8 @@ def qa_chain(k=3):
                         api_version="2024-02-15-preview",
                         temperature=0)
     template = """
-    Dado un historial de conversacion, reformula la pregunta para hacerla mas facil de buscar en una base de datos.
-    Por ejemplo, si la IA dice "¿Quieres saber el clima actual en Estambul?", y el usuario responde "si", entonces la IA deberia reformular la pregunta como "¿Cual es el clima actual en Estambul?".
-    No debes cambiar el idioma de la pregunta, solo reformularla.
-
+    Dado un historial de chat y la última pregunta del usuario, que podría hacer referencia al contexto en el historial de chat, formula una pregunta independiente que pueda entenderse sin el historial de chat.
+    NO respondas la pregunta, solo reformulala si es necesario y, en caso contrario, devuelvela tal como está.
     ### Historial de conversación ###
     {chat_history}
     Ultimo mensaje: {question}
