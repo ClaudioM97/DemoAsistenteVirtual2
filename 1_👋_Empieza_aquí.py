@@ -61,7 +61,27 @@ st.sidebar.markdown(
 
 st.title('👋 ¡Bienvenido al Asistente IA de Brain Food!')
 
-st.markdown('''Esta aplicación basada en Inteligencia Artificial Generativa (GenAI) consiste en un chatbot en el cual puedes realizarle preguntas sobre el contenido de los discursos presidenciales de los años 2022 y 2023.
-    Ten presente que es un prototipo y por ende puede que algunas preguntas no las conteste correctamente. ¡Está en mejora continua!
+st.markdown('''Cuenta Pública 2024: ¡Hazle preguntas al discurso!
+
+En casi 3 horas de discurso puede ser un poco complejo estar bien atento a ciertos temas específicos que te pueden interesar. Por eso, desarrollamos esta plataforma apoyada por Inteligencia Artificial para que puedas preguntar lo que quieras. 
+
+Incluso puedes comparar algunos anuncios con los realizados en la Cuenta Pública de 2022 y 2023. Como guía, te dejamos un par de ejemplos:
+
+¿Cuáles fueron los principales anuncios en materia de salud?
+¿Puedes enumerar las frases donde se menciona “energías renovables”? 
+¿Puedes resumir los anuncios en materia de crecimiento económico y compararlos con la Cuenta Pública del 2022 y 2023?
+¿Cuántas veces mencionó la palabra “regiones” en su discurso?
+
+Esta es una plataforma desarrollada por Brain Food, en una iniciativa en conjunto con PARLA.
+
+¡Te invitamos a probarla!
+
+Sobre Brain Food
+
+XXX
+
+Sobre PARLA
+
+PARLA es una agencia integrada de comunicación estratégica, con más de 9 años apoyando a empresas y organizaciones a conectarse con su entorno y comunicar. Liderada por Rodrigo Frey, Francisco Derosas y Sebastián Jordana junto a un equipo multidisciplinario de más de 40 profesionales. Puedes conocer más en www.parla.cl.
             ''')
 
