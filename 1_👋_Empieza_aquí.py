@@ -15,11 +15,11 @@ st.markdown(
     """
         <style>
             [data-testid="stSidebar"] {
-                background-image: url("https://brainfood.cl/wp-content/themes/theme_brainfood/assets/svgs/imagotipo-brainfood.svg");
+                background-image: url("https://brainfood.cl/wp-content/themes/theme_brainfood/assets/svgs/imagotipo-brainfood.svg"),url("https://parla.cl/wp-content/themes/parla2023/assets/svg/logo-parla_wh.svg");
                 background-repeat: no-repeat;
                 padding-top: 50px;
-                background-position: 20px -20px;
-                background-size: 170px 170px; 
+                background-position: 20px -20px, 160px -20px;
+                background-size: 120px 170px; 
             }
         </style>
         """,
@@ -48,30 +48,32 @@ st.sidebar.markdown(
     """
     <style>
     .spacer {
-        margin-top: 150px; 
+        margin-top: 30px; 
     }
     </style>
     <div class="spacer"></div>
     ¿Quieres saber más de nosotros? <br><br>
     Visita <a href="https://brainfood.cl" target="_blank">Brain Food</a> para más información.<br>
-    También puedes seguirnos en <a href="https://cl.linkedin.com/company/brain-food-spa" target="_blank">Linkedin</a>.
+    También puedes seguirnos en <a href="https://cl.linkedin.com/company/brain-food-spa" target="_blank">Linkedin</a>.<br><br>
+    Puedes conocer más de PARLA en <a href="https://parla.cl" target="_blank">PARLA</a>.
     """,
     unsafe_allow_html=True
 )
 
-st.title('👋 Cuenta Pública 2024: ¡Hazle preguntas al discurso!')
+st.title('👋 ¡Bienvenido al Asistente IA de Brain Food!')
 
-st.markdown('''
-En casi 3 horas de discurso puede ser un poco complejo estar bien atento a ciertos temas específicos que te pueden interesar. Por eso, desarrollamos esta plataforma apoyada por Inteligencia Artificial para que puedas preguntar lo que quieras. 
+st.markdown(
+    """
+    Incluso puedes comparar algunos anuncios con los realizados en la Cuenta Pública de 2022 y 2023. Como guía, te dejamos un par de ejemplos:
+    * ¿Cuáles fueron los principales anuncios en materia de salud?
+    * ¿Puedes enumerar las frases donde se menciona "energías renovables"?
+    * ¿Puedes resumir los anuncios en materia de crecimiento económico y compararlos con la Cuenta Pública del 2022 y 2023?
+    * ¿Cuántas veces mencionó la palabra "regiones" en su discurso?
+    """
+)
 
-Incluso puedes comparar algunos anuncios con los realizados en la Cuenta Pública de 2022 y 2023. Como guía, te dejamos un par de ejemplos:
-
-¿Cuáles fueron los principales anuncios en materia de salud?
-¿Puedes enumerar las frases donde se menciona “energías renovables”? 
-¿Puedes resumir los anuncios en materia de crecimiento económico y compararlos con la Cuenta Pública del 2022 y 2023?
-¿Cuántas veces mencionó la palabra “regiones” en su discurso?
-
-Esta es una plataforma desarrollada por Brain Food, en una iniciativa en conjunto con PARLA.
+st.markdown("""
+            Esta es una plataforma desarrollada por Brain Food, en una iniciativa en conjunto con PARLA.
 
 ¡Te invitamos a probarla!
 
@@ -81,6 +83,7 @@ XXX
 
 Sobre PARLA
 
-PARLA es una agencia integrada de comunicación estratégica, con más de 9 años apoyando a empresas y organizaciones a conectarse con su entorno y comunicar. Liderada por Rodrigo Frey, Francisco Derosas y Sebastián Jordana junto a un equipo multidisciplinario de más de 40 profesionales. Puedes conocer más en www.parla.cl.
-            ''')
+PARLA es una agencia integrada de comunicación estratégica, con más de 9 años apoyando a empresas y organizaciones a conectarse con su entorno y comunicar. Liderada por Rodrigo Frey, Francisco Derosas y Sebastián Jordana junto a un equipo multidisciplinario de más de 40 profesionales
+
+            """)
 
