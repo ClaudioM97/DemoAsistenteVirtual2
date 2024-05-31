@@ -79,7 +79,7 @@ st.markdown("""
 
 Sobre Brain Food
 
-XXX
+Brain Food es una consultora especializada en Transformación Digital, Analítica Avanzada, Ingeniería de Datos, BI, Automatización y Software Factory. Estamos basados en Santiago de Chile y proveemos servicios a mas de 16 países alrededor del mundo.
 
 Sobre PARLA
 
