@@ -60,10 +60,12 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
-st.title('👋 ¡Bienvenido al Asistente IA de Brain Food!')
+st.title('👋 Cuenta Pública 2024: ¡Hazle preguntas al discurso!')
 
 st.markdown(
     """
+    En casi 3 horas de discurso puede ser un poco complejo estar bien atento a ciertos temas específicos que te pueden interesar. Por eso, desarrollamos esta plataforma apoyada por Inteligencia Artificial para que puedas preguntar lo que quieras. 
+
     Incluso puedes comparar algunos anuncios con los realizados en la Cuenta Pública de 2022 y 2023. Como guía, te dejamos un par de ejemplos:
     * ¿Cuáles fueron los principales anuncios en materia de salud?
     * ¿Puedes enumerar las frases donde se menciona "energías renovables"?
