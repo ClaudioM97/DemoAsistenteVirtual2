@@ -190,7 +190,7 @@ def display_in_pairs(data):
 def get_vdb():
     #persist_directory = '/Users/claudiomontiel/Desktop/Proyectos VS/PruebaStreamlit/chroma_st'
     embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
-    vectordb = Chroma(persist_directory="chroma_discursos",
+    vectordb = Chroma(persist_directory="chroma_sabado",
                       embedding_function=embeddings)
     return vectordb
     
@@ -198,7 +198,7 @@ def get_vdb():
 @st.cache_resource
 def qa_chain(k=3):
     embeddings = OpenAIEmbeddings(model = 'text-embedding-3-large')
-    vectordb = Chroma(persist_directory="chroma_discursos",
+    vectordb = Chroma(persist_directory="chroma_sabado",
                       embedding_function=embeddings)
     retriever_bm25 = BM25Retriever.from_texts(vectordb.get()['documents'])
     retriever_mmr = vectordb.as_retriever(search_kwargs={'k': k})
