@@ -25,7 +25,7 @@ from langchain.retrievers import EnsembleRetriever
 from langchain_community.retrievers import BM25Retriever
 
 general_system_template = f'''
-Eres un asistente político que responde consultas sobre los discursos presidenciales en Chile.
+Eres un asistente político que responde consultas sobre los discursos presidenciales en Chile del 2024, 2023 y 2022.
 Responde la pregunta del final, utilizando el siguiente contexto (delimitado por <context></context>).
 
 En tu respuestas considera lo siguiente:
