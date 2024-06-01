@@ -59,13 +59,16 @@ button {
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🧠 Habla con los documentos precargados")
+st.title("🧠 Habla con los discursos")
 
 st.markdown('''
         ¡Pruébalo tu mismo! 🤝
+
+        En el costado izquierdo, puedes seleccionar el nivel de contexto de la respuesta del asistente.
+        Un nivel menor implica una respuesta mas espécifica y acotada, mientras que un nivel mayor proporciona una respuesta con un contexto más amplio.
          ''',unsafe_allow_html=True)
 
-k_value = st.sidebar.select_slider('Segmentos de texto a recuperar', options=[1,2,3,4,5], value=3)
+k_value = st.sidebar.select_slider('Nivel de contexto', options=[1,2,3,4,5], value=3)
 
 if k_value:
     question = st.chat_input("Escribe tu pregunta aquí")
