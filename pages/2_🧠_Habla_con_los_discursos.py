@@ -65,7 +65,7 @@ st.markdown('''
         ¡Pruébalo tu mismo! 🤝
 
         En el costado izquierdo, puedes seleccionar el nivel de contexto de la respuesta del asistente.
-        Un nivel menor implica una respuesta mas espécifica y acotada, mientras que un nivel mayor proporciona una respuesta con un contexto más amplio.
+        Un nivel menor implica una respuesta mas específica y acotada, mientras que un nivel mayor proporciona una respuesta con un contexto más amplio.
          ''',unsafe_allow_html=True)
 
 k_value = st.sidebar.select_slider('Nivel de contexto', options=[1,2,3,4,5], value=3)
